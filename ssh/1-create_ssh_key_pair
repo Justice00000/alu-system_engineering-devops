@@ -1,7 +1,7 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 
 key_name="school"
 bits=4096
 passphrase="betty"
 
-ssh-keygen -t rsa -b $bits -N "$passphrase" -f "$HOME/.ssh/$key_name"
+ssh-keygen -t rsa -b 4096 -N "betty" -f "$HOME/.ssh/school"
