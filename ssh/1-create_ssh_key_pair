@@ -1,4 +1,29 @@
 #!/usr/bin/env bash
 
+# Define variables
+key_name="school"
+bits=4096
+passphrase="betty"
+key_directory="$HOME/.ssh"
+private_key="$key_directory/$key_name"
+
+# Check if the key already exists, if so, prompt for overwrite
+if [ -f "$private_key" ]; then
+    read -p "The key '$key_name' already exists. Overwrite? (y/n): " overwrite
+    if [ "$overwrite" != "y" ]; then
+        echo "Operation canceled."
+        exit 0
+    fi
+fi
+
 # Create the RSA key pair
-ssh-keygen -t rsa -b 4096 -N "betty" -f "$HOME/.ssh/school"
+ssh-keygen -t rsa -b $bits -N "$passphrase" -f "$private_key"
+
+# Check if the key was created successfully
+if [ $? -eq 0 ]; then
+    echo "RSA key pair '$key_name' with $bits bits created successfully."
+    mv "$private_key" "$private_key.pem"
+    echo "Private key renamed to '$key_name.pem'"
+else
+    echo "Error creating the RSA key pair."
+fi
