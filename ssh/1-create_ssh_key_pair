@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-# This script generates an RSA key pair with a specific passphrase and saves it as 'school.pem'
-
-# Define variables
-key_name="school"
-bits=4096
-passphrase="betty"
-key_directory="$HOME/.ssh"
-private_key="$key_directory/$key_name"
+# This script generates an RSA key pair with a specific passphrase and saves it.
 
 # Create the RSA key pair
-ssh-keygen -t rsa -b 4096 -N "betty" -f "$HOME/.ssh/school"
+ssh-keygen -t rsa -b 4096 -N "betty" -f "school"
