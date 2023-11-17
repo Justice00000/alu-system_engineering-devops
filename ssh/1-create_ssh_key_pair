@@ -1,3 +1,25 @@
 #!/usr/bin/env bash
 
-ssh-keygen -t rsa -b 4096 -N "betty" -f "$HOME/.ssh/school"
+# Define variables
+key_name="school"
+bits=4096
+passphrase="betty"
+
+# Check if the key already exists, if so, prompt for overwrite
+if [ -f "$HOME/.ssh/$key_name" ]; then
+    read -p "The key '$key_name' already exists. Overwrite? (y/n): " overwrite
+    if [ "$overwrite" != "y" ]; then
+        echo "Operation canceled."
+        exit 0
+    fi
+fi
+
+# Create the RSA key pair
+ssh-keygen -t rsa -b $bits -N "$passphrase" -f "$HOME/.ssh/$key_name"
+
+# Check if the key was created successfully
+if [ $? -eq 0 ]; then
+    echo "RSA key pair '$key_name' with $bits bits created successfully."
+else
+    echo "Error creating the RSA key pair."
+fi
