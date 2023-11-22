@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#To install Nginx and configure it to listen on port 80 while ensuring that a GET request to the root path ("/") returns a page containing the string "Holberton School,
+# SetUp Process for Nginx on a server
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw enable
-sudo ufw allow 'Nginx HTTP'
-sudo sh -c 'echo "Holberton School" > /var/www/html/index.html'
-systemctl restart nginx.service 
+apt-get -y update
+apt-get -y install nginx
+ufw enable
+ufw allow 'Nginx HTTP'
+echo "Holberton School" > /var/www/html/index.html
+service nginx restart
