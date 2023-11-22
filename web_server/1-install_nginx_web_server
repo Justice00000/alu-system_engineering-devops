@@ -7,4 +7,3 @@ sudo ufw enable
 sudo ufw allow 'Nginx HTTP'
 sudo sh -c 'echo "Holberton School" > /var/www/html/index.html'
 systemctl restart nginx.service 
-curl -s http://localhost 
