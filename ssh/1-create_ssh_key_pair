@@ -1,7 +1,5 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
+# This script generates an RSA key pair with a specific passphrase and saves it.
 
-key_name="school"
-bits=4096
-passphrase="betty"
-
-ssh-keygen -t rsa -b $bits -N "$passphrase" -f "$HOME/.ssh/$key_name"
+# Create the RSA key pair
+ssh-keygen -t rsa -b 4096 -N "betty" -f "school"
