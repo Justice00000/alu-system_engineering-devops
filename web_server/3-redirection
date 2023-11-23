@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
-# Configure your Nginx server so that /redirect_me is redirecting to another page
+# redirecting to another page on nginx
 
 sudo apt-get update
 sudo apt-get install -y nginx
 
-echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Holberton School" | sudo tee /var/www/html/index.html
 
-new_route="server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://github.com/Justice00000;\n\t}"
-sudo sed -i "/server_name _;/c\\$new_route" /etc/nginx/sites-enabled/default
+# redirection config
+replacement="server_name _;\\
+    rewrite ^/redirect_me https://www.github.com/Justice00000/ permanent;"
+sudo sed -i "s|server_name _;|$replacement|" /etc/nginx/sites-available/default
 
-sudo service nginx restart
+sudo nginx -t
+sudo service nginx start
