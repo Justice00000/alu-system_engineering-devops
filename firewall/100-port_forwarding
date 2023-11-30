@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #To view the current IPTables rules
 sudo iptables -L -n
 
