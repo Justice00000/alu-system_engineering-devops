@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+[ $# -ne 1 ] && echo "Usage: $0 <username>" || sudo -u "$1" whoami
